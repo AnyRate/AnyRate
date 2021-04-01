@@ -21,6 +21,15 @@ contract AnyRateOracle is ChainlinkClient, Ownable {
     uint256 public usage;
     uint256 public unitCost;
 
+    struct Client {
+      billingContract payable address,
+      url string,
+      path string,
+      unitCost uint256
+    }
+
+    mapping (string => Client) public clients;
+
     /**
      * @notice Deploy the contract with a specified address for the LINK
      * and Oracle contract addresses
