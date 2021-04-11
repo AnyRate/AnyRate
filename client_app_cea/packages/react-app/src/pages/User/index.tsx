@@ -174,8 +174,8 @@ const User = () => {
               </Button> */}
 
               <Field label="Company Name">
-                <Select
-                  options={[{ value: "netflix", label: "Netflix" }]}
+                <Input
+                  type="text"
                   required
                   value={companyName}
                   onChange={handleCompanyName}
@@ -185,7 +185,6 @@ const User = () => {
                 <Input
                   type="text"
                   required
-                  disabled
                   value={userName}
                   onChange={handleUserName}
                 />
