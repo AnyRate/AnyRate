@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Card, Field, Flex, Heading, Input } from "rimble-ui";
 
 const AnyRateAdmin = () => {
+  const [companyName, setCompanyName] = useState("");
   const [newAnyRateFee, setNewAnyRateFee] = useState(0);
   const [currentAnyRateFee, setCurrentAnyRateFee] = useState(0);
   const [signer, setSigner] = useState();
@@ -33,6 +34,16 @@ const AnyRateAdmin = () => {
       setCurrentAnyRateFee(newValue);
       setNewAnyRateFee(newValue);
     });
+  }
+
+  const handleCompanyName = (e) => {
+    setCompanyName(e.target.value);
+  }
+
+  async function billAll() {
+    billingFactoryContract.callBillAll(companyName)
+      .then(res => console.log("billAll():", res))
+      .catch(err => console.error(err));
   }
 
   useEffect(() => {
@@ -113,6 +124,23 @@ const AnyRateAdmin = () => {
                 <Box marginLeft={5}>
                   <Button size="small" onClick={submitNewAnyRateFee}>
                     Update
+                  </Button>
+                </Box>
+              </Flex>
+              <Flex marginY={1} alignItems="center">
+                <Box>
+                  <Field label="Client">
+                    <Input
+                      type="text"
+                      required
+                      value={companyName}
+                      onChange={handleCompanyName}
+                    />
+                  </Field>
+                </Box>
+                <Box marginLeft={5}>
+                  <Button size="large" onClick={billAll}>
+                    Bill All
                   </Button>
                 </Box>
               </Flex>
