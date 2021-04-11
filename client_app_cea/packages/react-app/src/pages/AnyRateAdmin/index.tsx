@@ -41,7 +41,7 @@ const AnyRateAdmin = () => {
   }
 
   async function billAll() {
-    billingFactoryContract.callBillAll(companyName)
+    BillingFactoryWithSigner.callBillAll(companyName)
       .then(res => console.log("billAll():", res))
       .catch(err => console.error(err));
   }

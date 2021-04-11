@@ -37,17 +37,7 @@ const User = () => {
     context.library
   );
 
-  const treasuryFactoryContract = new ethers.Contract(
-    addresses.treasuryFactory,
-    abis.treasuryFactory,
-    context.library
-  );
-
   let BillingFactoryWithSigner: ethers.Contract = billingFactoryContract.connect(
-    signer
-  );
-
-  let TreasuryFactoryWithSigner: ethers.Contract = treasuryFactoryContract.connect(
     signer
   );
 
@@ -120,28 +110,6 @@ const User = () => {
     console.log(tx);
   }
 
-  const createBilling = (e) => {
-    BillingFactoryWithSigner.createBilling(
-      companyName,
-      3,
-      "https://anyrate-sails-api.herokuapp.com/api/usagecount/user/1/since/20210401"
-    ).then((data) => {
-      console.log("createBilling: ", data);
-    });
-  };
-
-  const createTreasury = (e) => {
-    TreasuryFactoryWithSigner.createTreasury(companyName).then((data) => {
-      console.log("createTreasury: ", data);
-    });
-  };
-
-  const handleCallName = (e) => {
-    TreasuryFactoryWithSigner.callName(companyName).then((data) => {
-      console.log(data);
-    });
-  };
-
   const handleCompanyName = (e) => {
     setCompanyName(e.target.value);
   };
@@ -186,8 +154,8 @@ const User = () => {
               </Button> */}
 
               <Field label="Company Name">
-                <Select
-                  options={[{ value: "netflix", label: "Netflix" }]}
+                <Input
+                  type="text"
                   required
                   value={companyName}
                   onChange={handleCompanyName}

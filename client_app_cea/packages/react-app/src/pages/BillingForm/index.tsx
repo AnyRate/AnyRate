@@ -19,7 +19,7 @@ const BillingForm = () => {
   const [companyName, setCompanyName] = useState("netflix");
   const [billingType, setBillingType] = useState("time");
   const [endpoint, setEndpoint] = useState(
-    "https://anyrate-sails-api.herokuapp.com/api/usagecount/user/1/since/20210401"
+    "https://anyrate-client-business-api.herokuapp.com/usage"
   );
   const [frequency, setFrequency] = useState(0);
   const [rate, setRate] = useState(2);
